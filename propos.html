@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Salihi Ilyass</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-endra">
+    <div class="grid-content">
+        <header>
+            <div class="controls-container">
+                <div class="theme-switcher">
+                    <button class="theme-btn active" onclick="changeTheme('endra')">🎨 ENDRA</button>
+                    <button class="theme-btn" onclick="changeTheme('normal')">🌙 NORMAL</button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="changeLanguage('fr')">🇫🇷 FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('en')">🇬🇧 EN</button>
+                </div>
+            </div>
+            <div class="profile-container-double">
+                <img src="photos/Anime2.gif" alt="Photo normale" class="profile-img-overlay profile-img-main">
+                <img src="photos/sockgang.jpeg" alt="Photo hover" class="profile-img-overlay profile-img-hover">
+            </div>
+            <h1>Salihi Ilyass</h1>
+            <p class="header-subtitle" data-fr="Étudiant FSO - Branche MIP" data-en="FSO Student - MIP Branch">Étudiant FSO - Branche MIP</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="accueil.html" data-fr="🏠 Accueil" data-en="🏠 Home">🏠 Accueil</a></li>
+                <li><a href="services.html" data-fr="💼 Services" data-en="💼 Services">💼 Services</a></li>
+                <li><a href="propos.html" class="active" data-fr="👤 À propos" data-en="👤 About">👤 À propos</a></li>
+                <li><a href="portfolio.html" data-fr="📁 Portfolio" data-en="📁 Portfolio">📁 Portfolio</a></li>
+                <li><a href="equipe.html" data-fr="👥 Équipe" data-en="👥 Team">👥 Équipe</a></li>
+                <li><a href="contact.html" data-fr="📧 Contact" data-en="📧 Contact">📧 Contact</a></li>
+            </ul>
+        </nav>
+
+        <aside>
+            <h3 data-fr="✍ Détails Personnels" data-en="✍ Personal Details">✍ Détails Personnels</h3>
+            <div class="details-box">
+                <ul>
+                    <li><strong data-fr="🚩 Localisation:" data-en="🚩 Location:">🚩 Localisation:</strong> Oujda, Morocco</li>
+                    <li><strong>📧 Email:</strong> salihiilyad@gmail.com</li>
+                    <li><strong data-fr="📱 Téléphone:" data-en="📱 Phone:">📱 Téléphone:</strong> +212 611 858365</li>
+                    <li><strong data-fr="🎓 Langues:" data-en="🎓 Languages:">🎓 Langues:</strong> <span data-fr="Anglais (B1), Arabe (B2), Français (B1)" data-en="English (B1), Arabic (B2), French (B1)">Anglais (B1), Arabe (B2), Français (B1)</span></li>
+                    <li><strong data-fr="👨‍🎓 État:" data-en="👨‍🎓 Status:">👨‍🎓 État:</strong> <span data-fr="Étudiant ^^" data-en="Student ^^">Étudiant ^^</span></li>
+                </ul>
+            </div>
+            <div class="skills-sidebar">
+                <h3 style="font-size: 1.2em; margin-bottom: 15px; border: none;" data-fr="🎯 Langages" data-en="🎯 Languages">🎯 Langages</h3>
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">C</div>
+                <div class="skill-tag">HTML/CSS</div>
+                <div class="skill-tag">JavaScript</div>
+                <div class="skill-tag">PHP</div>
+            </div>
+        </aside>
+
+        <main>
+            <section id="about">
+                <h2>👋 Information Personnelle</h2>
+                <p>Bonjour! Je suis <strong>Salihi Ilyass</strong>, étudiant passionné avec 2 ans d'expérience en programmation MIP. Je me spécialise en Python et en programmation web.</p>
+                <p>Je m'engage à créer des solutions pertinentes et efficaces qui fassent la différence. Quand je ne travaille pas, vous me trouverez en train de regarder des animés.</p>
+                <p>Je crois en la formation continue et je m'efforce toujours d'élargir mes connaissances et mes compétences.</p>
+            </section>
+
+            <section id="experience" style="margin-top: 40px;">
+                <h2>💼 Expérience</h2>
+                <div class="experience-grid">
+                    <div class="experience-card">
+                        <img src="photos/developement.png" alt="Développement web" class="experience-img">
+                        <div class="experience-content">
+                            <h3>Développement Web</h3>
+                            <ul>
+                                <li>Création de sites web personnels en utilisant HTML, CSS et JS</li>
+                                <li>Préparation partie serveur de ces sites en utilisant PHP et Python</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <img src="photos/programation.jpg" alt="Programmation" class="experience-img">
+                        <div class="experience-content">
+                            <h3>Programmation</h3>
+                            <ul>
+                                <li>Résoudre des multiproblèmes sur les programmes C</li>
+                                <li>Création des petits projets en Python comme les dictionnaires visuels et les scripts</li>
+                                <li>Une petite expérience sur le Deep Learning et les frameworks pour Python et PHP</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-card">
+                        <img src="photos/images.jpg" alt="Compétences" class="experience-img">
+                        <div class="experience-content">
+                            <h3>Compétences</h3>
+                            <ul>
+                                <li>Langages : Python, C, HTML, CSS, JavaScript, PHP</li>
+                                <li>Outils : Git, Visual Studio Code, CodeBlocks</li>
+                                <li>Langues : Arabe (natif), Français (courant), Anglais (intermédiaire)</li>
+                                <li>Pratique : Développement web, POO, Gestion serveur</li>
+                                <li>Spécialités : Hardware en général</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="skills-section">
+                <h2>🎯 Skills & Expertise</h2>
+                <div class="skills-container">
+                    <div class="skill-item">📚 Lecture</div>
+                    <div class="skill-item">💻 Informatique</div>
+                    <div class="skill-item">⚽ Sport</div>
+                    <div class="skill-item">🎮 Gaming</div>
+                    <div class="skill-item">🎵 Musique</div>
+                    <div class="skill-item">🧩 Problem Solving</div>
+                    <div class="skill-item">👥 Team Leadership</div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Salihi Ilyass - <span data-fr="Tous droits réservés" data-en="All rights reserved">Tous droits réservés</span></p>
+            <p style="margin-top: 10px; opacity: 0.8;" data-fr="Développé avec passion 💙" data-en="Developed with passion 💙">Développé avec passion 💙</p>
+            <div class="social-links">
+                <a href="https://github.com/ilyasssalihi192-art" title="GitHub">💻</a>
+                <a href="https://www.linkedin.com/in/ilyass-salihi-307193352" title="LinkedIn">💼</a>
+                <a href="https://www.instagram.com/sali__ilyass__rf?igsh=MmJzd3hrOTF0bXc=" title="Instagram">📷</a>
+                <a href="https://www.facebook.com/share/1d7EBG7j52/" title="Facebook">🐦</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script-common.js"></script>
+    <script src="script-propos.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Équipe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-endra">
+    <div class="grid-content">
+        <header>
+            <div class="controls-container">
+                <div class="theme-switcher">
+                    <button class="theme-btn active" onclick="changeTheme('endra')">🎨 ENDRA</button>
+                    <button class="theme-btn" onclick="changeTheme('normal')">🌙 NORMAL</button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="changeLanguage('fr')">🇫🇷 FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('en')">🇬🇧 EN</button>
+                </div>
+            </div>
+            <div class="profile-container">
+                <img src="photos/Anime2.gif" alt="Photo de profil" class="profile-img">
+            </div>
+            <h1 data-fr="Notre Équipe" data-en="Our Team">Notre Équipe</h1>
+            <p class="header-subtitle" data-fr="Des talents passionnés à votre service" data-en="Passionate talents at your service">Des talents passionnés à votre service</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="accueil.html" data-fr="🏠 Accueil" data-en="🏠 Home">🏠 Accueil</a></li>
+                <li><a href="services.html" data-fr="💼 Services" data-en="💼 Services">💼 Services</a></li>
+                <li><a href="propos.html" data-fr="👤 À propos" data-en="👤 About">👤 À propos</a></li>
+                <li><a href="portfolio.html" data-fr="📁 Portfolio" data-en="📁 Portfolio">📁 Portfolio</a></li>
+                <li><a href="equipe.html" class="active" data-fr="👥 Équipe" data-en="👥 Team">👥 Équipe</a></li>
+                <li><a href="contact.html" data-fr="📧 Contact" data-en="📧 Contact">📧 Contact</a></li>
+            </ul>
+        </nav>
+
+        <aside>
+            <h3 data-fr="📊 Statistiques" data-en="📊 Statistics">📊 Statistiques</h3>
+            <div class="sidebar-section">
+                <div class="team-stat"><span class="stat-number">4+</span><span class="stat-label" data-fr="Membres" data-en="Members">Membres</span></div>
+                <div class="team-stat"><span class="stat-number">1+</span><span class="stat-label" data-fr="Pays" data-en="Countries">Pays</span></div>
+                <div class="team-stat"><span class="stat-number">0+</span><span class="stat-label" data-fr="Projets" data-en="Projects">Projets</span></div>
+                <div class="team-stat"><span class="stat-number">50%</span><span class="stat-label" data-fr="Satisfaction" data-en="Satisfaction">Satisfaction</span></div>
+            </div>
+            <div class="sidebar-section">
+                <h4 data-fr="💎 Nos Valeurs" data-en="💎 Our Values">💎 Nos Valeurs</h4>
+                <div class="values-box">
+                    <div class="value-item"><span class="value-icon">🎯</span><span data-fr="Excellence" data-en="Excellence">Excellence</span></div>
+                    <div class="value-item"><span class="value-icon">🤝</span><span data-fr="Collaboration" data-en="Collaboration">Collaboration</span></div>
+                    <div class="value-item"><span class="value-icon">💡</span><span data-fr="Innovation" data-en="Innovation">Innovation</span></div>
+                    <div class="value-item"><span class="value-icon">🚀</span><span data-fr="Ambition" data-en="Ambition">Ambition</span></div>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <section class="team-section">
+                <h2 id="main-title">👥 Rencontrez Notre Équipe</h2>
+                <p class="section-intro" id="intro-text">Une équipe diversifiée et talentueuse, unie par la passion du développement web et l'innovation technologique. Ensemble, nous transformons vos idées en réalité digitale.</p>
+
+                <div class="team-grid">
+                    <div class="member-card">
+                        <div class="member-image-container">
+                            <img src="photos/Lead Dev.jpg" alt="Salihi Ilyass" class="member-img">
+                            <div class="member-overlay">
+                                <div class="member-social">
+                                    <a href="https://github.com/ilyasssalihi192-art" title="GitHub">💻</a>
+                                    <a href="https://www.linkedin.com/in/ilyass-salihi-307193352" title="LinkedIn">💼</a>
+                                    <a href="https://www.instagram.com/sali__ilyass__rf?igsh=MmJzd3hrOTF0bXc=" title="Instagram">📷</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-content">
+                            <h3>Salihi Ilyass</h3>
+                            <p class="member-role" data-fr="Lead Developer & Fondateur" data-en="Lead Developer & Founder">Lead Developer & Fondateur</p>
+                            <p id="member1-desc">Étudiant en génie informatique passionné par le développement web full-stack et l'architecture logicielle moderne.</p>
+                            <div class="skills-tags"><span class="skill-tag">Python</span><span class="skill-tag">JavaScript</span><span class="skill-tag">React</span></div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image-container">
+                            <img src="photos/UX-UI.jpg" alt="Designer UI/UX" class="member-img">
+                            <div class="member-overlay">
+                                <div class="member-social">
+                                    <a href="#" title="GitHub">💻</a><a href="#" title="LinkedIn">💼</a><a href="#" title="Dribbble">🎨</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-content">
+                            <h3>Said Zakaria</h3>
+                            <p class="member-role" data-fr="Designer UI/UX" data-en="UI/UX Designer">Designer UI/UX</p>
+                            <p id="member2-desc">Créatrice d'expériences utilisateur exceptionnelles avec un œil pour le design moderne et l'accessibilité.</p>
+                            <div class="skills-tags"><span class="skill-tag">Figma</span><span class="skill-tag">Adobe XD</span><span class="skill-tag">Design</span></div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image-container">
+                            <img src="photos/backend.jpg" alt="Backend Developer" class="member-img">
+                            <div class="member-overlay">
+                                <div class="member-social">
+                                    <a href="#" title="GitHub">💻</a><a href="#" title="LinkedIn">💼</a><a href="#" title="Stack Overflow">📚</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-content">
+                            <h3>Tahrioui Ayoub</h3>
+                            <p class="member-role" data-fr="Backend Developer" data-en="Backend Developer">Backend Developer</p>
+                            <p id="member3-desc">Expert en architecture backend scalable et sécurité des applications web avec 5 ans d'expérience.</p>
+                            <div class="skills-tags"><span class="skill-tag">Node.js</span><span class="skill-tag">MongoDB</span><span class="skill-tag">API</span></div>
+                        </div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-image-container">
+                            <img src="photos/mobil.jpg" alt="Mobile Developer" class="member-img">
+                            <div class="member-overlay">
+                                <div class="member-social">
+                                    <a href="#" title="GitHub">💻</a><a href="#" title="LinkedIn">💼</a><a href="#" title="Twitter">🐦</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="member-content">
+                            <h3>Zerhoun Haitam</h3>
+                            <p class="member-role" data-fr="Mobile Developer" data-en="Mobile Developer">Mobile Developer</p>
+                            <p id="member4-desc">Spécialiste du développement mobile cross-platform avec une passion pour les performances optimales.</p>
+                            <div class="skills-tags"><span class="skill-tag">React Native</span><span class="skill-tag">Flutter</span><span class="skill-tag">iOS/Android</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="culture-section">
+                    <h2 id="culture-title">🌟 Notre Culture</h2>
+                    <div class="culture-grid">
+                        <div class="culture-item"><span class="culture-icon">🚀</span><h4 id="culture1-title">Innovation Continue</h4><p id="culture1-desc">Nous encourageons l'expérimentation et l'adoption des technologies émergentes pour rester à la pointe.</p></div>
+                        <div class="culture-item"><span class="culture-icon">🤝</span><h4 id="culture2-title">Travail d'Équipe</h4><p id="culture2-desc">La collaboration et le partage des connaissances sont au cœur de notre réussite collective.</p></div>
+                        <div class="culture-item"><span class="culture-icon">📚</span><h4 id="culture3-title">Apprentissage</h4><p id="culture3-desc">Formation continue et développement professionnel pour chaque membre de l'équipe.</p></div>
+                        <div class="culture-item"><span class="culture-icon">🎯</span><h4 id="culture4-title">Excellence</h4><p id="culture4-desc">Nous visons toujours la plus haute qualité dans chaque projet que nous entreprenons.</p></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Mon Portfolio - <span data-fr="Tous droits réservés" data-en="All rights reserved">Tous droits réservés</span></p>
+            <p style="margin-top: 10px; opacity: 0.8;" data-fr="Développé avec passion 💙" data-en="Developed with passion 💙">Développé avec passion 💙</p>
+            <div class="social-links">
+                <a href="https://github.com/ilyasssalihi192-art" title="GitHub">💻</a>
+                <a href="https://www.linkedin.com/in/ilyass-salihi-307193352" title="LinkedIn">💼</a>
+                <a href="https://www.instagram.com/sali__ilyass__rf?igsh=MmJzd3hrOTF0bXc=" title="Instagram">📷</a>
+                <a href="https://www.facebook.com/share/1d7EBG7j52/" title="Facebook">🐦</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script-common.js"></script>
+    <script src="script-equipe.js"></script>
+</body>
+</html>

@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Technique - Comment j'ai créé mon site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+            transition: background 0.5s ease;
+        }
+
+        body.theme-endra {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body.theme-normal {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .controls-container {
+            position: absolute;
+            top: -80px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-switcher, .theme-switcher {
+            display: flex;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-btn, .theme-btn {
+            padding: 8px 15px;
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .lang-btn:hover, .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-btn.active, .theme-btn.active {
+            background: rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+        }
+
+        body.theme-normal .theme-btn.active {
+            background: rgba(52, 152, 219, 0.5);
+            color: #3498db;
+        }
+
+        body.theme-normal .code-card h3,
+        body.theme-normal .step h4,
+        body.theme-normal .highlight {
+            color: #3498db;
+        }
+
+        body.theme-normal .step {
+            border-left-color: #3498db;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(-5px);
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .code-card {
+            background-color: #24233b;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            transition: 0.5s;
+            overflow: hidden;
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .code-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .circle {
+            padding: 0 4px;
+        }
+
+        .circle2 {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 6px;
+        }
+
+        .red {
+            background-color: #ff605c;
+        }
+
+        .yellow {
+            background-color: #ffbd44;
+        }
+
+        .green {
+            background-color: #00ca4e;
+        }
+
+        .card-title {
+            color: white;
+            padding-left: 20px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 25px;
+            background-color: rgb(73, 70, 92);
+            min-height: 400px;
+        }
+
+        .card-content h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .code-block {
+            background: #1e1e2e;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #a0f0ed;
+            overflow-x: auto;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ffd700;
+        }
+
+        .step h4 {
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        @media screen and (max-width: 768px) {
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .controls-container {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .header {
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="contact.html" class="back-button" data-fr="← Retour au site" data-en="← Back to site">
+            ← Retour au site
+        </a>
+
+        <div class="header">
+            <div class="controls-container">
+                <div class="theme-switcher">
+                    <button class="theme-btn active" onclick="changeTheme('endra')" data-fr="🎨 ENDRA" data-en="🎨 ENDRA">🎨 ENDRA</button>
+                    <button class="theme-btn" onclick="changeTheme('normal')" data-fr="🌙 NORMAL" data-en="🌙 NORMAL">🌙 NORMAL</button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="changeLanguage('fr')">🇫🇷 FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('en')">🇬🇧 EN</button>
+                </div>
+            </div>
+            <h1 data-fr="🛠️ Guide Technique" data-en="🛠️ Technical Guide">🛠️ Guide Technique</h1>
+            <p data-fr="Découvrez comment j'ai créé chaque page de mon site web" data-en="Discover how I created each page of my web site">Découvrez comment j'ai créé chaque page de mon site web</p>
+        </div>
+
+        <div class="guide-grid">
+            <div class="code-card">
+                <div class="card-header">
+                    <div class="circle">
+                        <span class="red circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="yellow circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green circle2"></span>
+                    </div>
+                    <div class="card-title">
+                        <p>01_accueil.html</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>🏠 Page d'Accueil</h3>
+                    
+                    <div class="step">
+                        <h4>Structure CSS Grid</h4>
+                        <p>J'ai utilisé <span class="highlight">CSS Grid</span> pour créer une mise en page responsive avec 4 zones principales</p>
+                    </div>
+
+                    <div class="code-block">
+.grid-content {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-areas:
+        "header header"
+        "nav nav"
+        "sidebar main"
+        "footer footer";
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Animations CSS</h4>
+                        <p>Ajout d'animations fluides : <span class="highlight">floatProfile</span>, <span class="highlight">titlePulse</span>, et effets de survol</p>
+                    </div>
+
+                    <div class="code-block">
+@keyframes floatProfile {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Système de thèmes</h4>
+                        <p>Implémentation d'un système de thèmes (ENDRA/NORMAL) avec <span class="highlight">localStorage</span> pour la persistance</p>
+                    </div>
+
+                    <div class="code-block">
+function changeTheme(theme) {
+    localStorage.setItem('preferredTheme', theme);
+    document.body.classList.add('theme-' + theme);
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Système multilingue</h4>
+                        <p>Support FR/EN avec attributs <span class="highlight">data-fr</span> et <span class="highlight">data-en</span> + JavaScript pour la traduction dynamique</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-card">
+                <div class="card-header">
+                    <div class="circle">
+                        <span class="red circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="yellow circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green circle2"></span>
+                    </div>
+                    <div class="card-title">
+                        <p>02_portfolio.html</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>📁 Page Portfolio</h3>
+                    
+                    <div class="step">
+                        <h4>Système de filtrage</h4>
+                        <p>Filtre dynamique par catégorie avec <span class="highlight">data-category</span> et manipulation du DOM</p>
+                    </div>
+
+                    <div class="code-block">
+function filterProjects(category) {
+    projectCards.forEach(card => {
+        const categories = 
+            card.getAttribute('data-category');
+        
+        if (category === 'all' || 
+            categories.includes(category)) {
+            card.classList.remove('hidden');
+        }
+    });
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Cartes de projets animées</h4>
+                        <p>Cartes avec effets de survol 3D, bordures animées et expansion au hover</p>
+                    </div>
+
+                    <div class="code-block">
+.project-card::before {
+    content: '';
+    height: 4px;
+    background: linear-gradient(
+        90deg, #ffd700, #a0f0ed
+    );
+    transform: scaleX(0);
+}
+
+.project-card:hover::before {
+    transform: scaleX(1);
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Statistiques dynamiques</h4>
+                        <p>Comptage automatique des projets affichés, terminés et en cours avec mise à jour en temps réel</p>
+                    </div>
+
+                    <div class="code-block">
+function updateStats() {
+    const visibleProjects = 
+        document.querySelectorAll(
+            '.project-card:not(.hidden)'
+        );
+    
+    document.getElementById('displayed-count')
+        .textContent = visibleProjects.length;
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Boutons avec effet néon</h4>
+                        <p>Boutons stylés avec bordures animées et effets de lumière type néon</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-card">
+                <div class="card-header">
+                    <div class="circle">
+                        <span class="red circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="yellow circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green circle2"></span>
+                    </div>
+                    <div class="card-title">
+                        <p>03_propos.html</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>👤 Page À Propos</h3>
+                    
+                    <div class="step">
+                        <h4>Double photo de profil</h4>
+                        <p>Effet de changement d'image au survol avec <span class="highlight">position: absolute</span> et transition d'opacité</p>
+                    </div>
+
+                    <div class="code-block">
+.profile-img-hover {
+    opacity: 0;
+}
+
+.profile-container:hover 
+.profile-img-hover {
+    opacity: 1;
+    transform: scale(1.2) rotate(-5deg);
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Cartes d'expérience</h4>
+                        <p>Grid responsive avec images, animations de flottement et overlay au survol</p>
+                    </div>
+
+                    <div class="code-block">
+.experience-grid {
+    display: grid;
+    grid-template-columns: 
+        repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.experience-card:hover .experience-img {
+    transform: scale(1.1);
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Tags de compétences</h4>
+                        <p>Badges animés avec effets de flottement échelonnés (<span class="highlight">animation-delay</span>)</p>
+                    </div>
+
+                    <div class="code-block">
+.skill-tag:nth-child(1) { 
+    animation-delay: 0s; 
+}
+.skill-tag:nth-child(2) { 
+    animation-delay: 0.2s; 
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Animations séquentielles</h4>
+                        <p>Chaque élément a un délai d'animation différent pour créer un effet de cascade</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-card">
+                <div class="card-header">
+                    <div class="circle">
+                        <span class="red circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="yellow circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green circle2"></span>
+                    </div>
+                    <div class="card-title">
+                        <p>04_services.html</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>💼 Page Services</h3>
+                    
+                    <div class="step">
+                        <h4>Système de highlight</h4>
+                        <p>Clic sur une catégorie pour mettre en évidence le service correspondant avec effet de focus</p>
+                    </div>
+
+                    <div class="code-block">
+function highlightService(category) {
+    document.body.classList
+        .add('category-selected');
+    
+    cards.forEach(card => {
+        if (card.getAttribute('data-service') 
+            === category) {
+            card.classList.add('highlighted');
+        }
+    });
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Effets de glassmorphism</h4>
+                        <p>Utilisation de <span class="highlight">backdrop-filter: blur()</span> pour créer des surfaces en verre</p>
+                    </div>
+
+                    <div class="code-block">
+.service-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid 
+        rgba(255, 255, 255, 0.2);
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Icônes animées</h4>
+                        <p>Animation de rotation subtile avec <span class="highlight">@keyframes rotateIcon</span></p>
+                    </div>
+
+                    <div class="code-block">
+@keyframes rotateIcon {
+    0%, 90% { transform: rotate(0deg); }
+    95% { transform: rotate(15deg); }
+    100% { transform: rotate(0deg); }
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>État actif visuel</h4>
+                        <p>Changement d'opacité et de taille pour les cartes non sélectionnées</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-card">
+                <div class="card-header">
+                    <div class="circle">
+                        <span class="red circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="yellow circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green circle2"></span>
+                    </div>
+                    <div class="card-title">
+                        <p>05_equipe.html</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>👥 Page Équipe</h3>
+                    
+                    <div class="step">
+                        <h4>Cartes membres flip</h4>
+                        <p>Overlay caché qui apparaît au survol avec les liens sociaux</p>
+                    </div>
+
+                    <div class="code-block">
+.member-overlay {
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.member-card:hover .member-overlay {
+    transform: translateY(0);
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Zoom d'image au survol</h4>
+                        <p>Effet de zoom sur l'image du membre avec <span class="highlight">overflow: hidden</span></p>
+                    </div>
+
+                    <div class="code-block">
+.member-image-container {
+    overflow: hidden;
+}
+
+.member-card:hover .member-img {
+    transform: scale(1.15);
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Section Culture</h4>
+                        <p>Grid de 4 cartes avec icônes animées et bordures au survol</p>
+                    </div>
+
+                    <div class="code-block">
+.culture-grid {
+    display: grid;
+    grid-template-columns: 
+        repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Statistiques sidebar</h4>
+                        <p>Compteurs animés avec grands chiffres colorés et labels descriptifs</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-card">
+                <div class="card-header">
+                    <div class="circle">
+                        <span class="red circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="yellow circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green circle2"></span>
+                    </div>
+                    <div class="card-title">
+                        <p>06_contact.html</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>📧 Page Contact</h3>
+                    
+                    <div class="step">
+                        <h4>Système d'authentification</h4>
+                        <p>Login/Register avec <span class="highlight">localStorage</span> pour la persistance des utilisateurs</p>
+                    </div>
+
+                    <div class="code-block">
+function handleLogin(event) {
+    const users = JSON.parse(
+        localStorage.getItem('users')
+    ) || [];
+    
+    const user = users.find(
+        u => u.email === email && 
+             u.password === password
+    );
+    
+    localStorage.setItem('currentUser', 
+        JSON.stringify(user));
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Système de commentaires</h4>
+                        <p>CRUD complet : création, affichage, suppression avec vérification du propriétaire</p>
+                    </div>
+
+                    <div class="code-block">
+function deleteComment(commentId) {
+    const comment = comments.find(
+        c => c.id === commentId
+    );
+    
+    if (comment.email !== 
+        currentUser.email) {
+        alert('Vous ne pouvez supprimer 
+            que vos propres commentaires');
+        return;
+    }
+    
+    comments = comments.filter(
+        c => c.id !== commentId
+    );
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Modales d'authentification</h4>
+                        <p>Pop-ups avec animations d'entrée/sortie et switch entre login/register</p>
+                    </div>
+
+                    <div class="code-block">
+.modal {
+    display: none;
+}
+
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Cartes sociales flip 3D</h4>
+                        <p>Effet de rotation 3D avec <span class="highlight">transform: rotateY(180deg)</span> et bordures animées</p>
+                    </div>
+
+                    <div class="code-block">
+.social-card:hover 
+.social-card-content {
+    transform: rotateY(180deg);
+}
+
+@keyframes rotation_social {
+    0% { transform: rotateZ(0deg); }
+    100% { transform: rotateZ(360deg); }
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>Google Maps intégré</h4>
+                        <p>Iframe Google Maps avec localisation de l'université et style personnalisé</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-card">
+                <div class="card-header">
+                    <div class="circle">
+                        <span class="red circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="yellow circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green circle2"></span>
+                    </div>
+                    <div class="card-title">
+                        <p>07_technologies.json</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>🔧 Technologies Utilisées</h3>
+                    
+                    <div class="step">
+                        <h4>HTML5 Sémantique</h4>
+                        <p>Utilisation de balises <span class="highlight">&lt;header&gt;</span>, <span class="highlight">&lt;nav&gt;</span>, <span class="highlight">&lt;main&gt;</span>, <span class="highlight">&lt;aside&gt;</span>, <span class="highlight">&lt;footer&gt;</span></p>
+                    </div>
+
+                    <div class="step">
+                        <h4>CSS3 Moderne</h4>
+                        <p>• CSS Grid & Flexbox<br>
+                           • Animations & Transitions<br>
+                           • Backdrop-filter (glassmorphism)<br>
+                           • Custom properties (variables CSS)</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>JavaScript Vanilla</h4>
+                        <p>• Manipulation du DOM<br>
+                           • Event listeners<br>
+                           • LocalStorage API<br>
+                           • Arrow functions ES6+</p>
+                    </div>
+
+                    <div class="code-block">
+// LocalStorage pour persistance
+localStorage.setItem('key', value);
+localStorage.getItem('key');
+
+// Arrow functions
+const changeTheme = (theme) => {
+    document.body.classList.add(theme);
+};
+
+// Template literals
+const html = `
+    &lt;div class="${className}"&gt;
+        ${content}
+    &lt;/div&gt;
+`;
+                    </div>
+
+                    <div class="step">
+                        <h4>Design Responsive</h4>
+                        <p>Media queries pour mobile, tablette et desktop</p>
+                    </div>
+
+                    <div class="code-block">
+@media screen and (max-width: 768px) {
+    .grid-content {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "nav"
+            "main"
+            "sidebar"
+            "footer";
+    }
+}
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-card">
+                <div class="card-header">
+                    <div class="circle">
+                        <span class="red circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="yellow circle2"></span>
+                    </div>
+                    <div class="circle">
+                        <span class="green circle2"></span>
+                    </div>
+                    <div class="card-title">
+                        <p>08_best_practices.md</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>💡 Conseils & Bonnes Pratiques</h3>
+                    
+                    <div class="step">
+                        <h4>1. Organisation du code</h4>
+                        <p>• Commenter les sections importantes<br>
+                           • Grouper les styles par composant<br>
+                           • Nommer les classes de manière descriptive</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>2. Performance</h4>
+                        <p>• Minimiser les animations lourdes<br>
+                           • Utiliser <span class="highlight">transform</span> plutôt que <span class="highlight">top/left</span><br>
+                           • Optimiser les images avant upload</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>3. Accessibilité</h4>
+                        <p>• Utiliser des balises sémantiques<br>
+                           • Ajouter des attributs <span class="highlight">alt</span> aux images<br>
+                           • Contraste de couleurs suffisant</p>
+                    </div>
+
+                    <div class="step">
+                        <h4>4. Réutilisation du code</h4>
+                        <p>• Créer des variables CSS pour les couleurs<br>
+                           • Fonctions JavaScript réutilisables<br>
+                           • Classes CSS modulaires</p>
+                    </div>
+
+                    <div class="code-block">
+// Variables CSS
+:root {
+    --primary-color: #ffd700;
+    --secondary-color: #a0f0ed;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+}
+
+// Utilisation
+.element {
+    color: var(--primary-color);
+    background: var(--glass-bg);
+}
+                    </div>
+
+                    <div class="step">
+                        <h4>5. Tester sur différents navigateurs</h4>
+                        <p>Vérifier la compatibilité Chrome, Firefox, Safari, Edge</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = localStorage.getItem('preferredLanguage') || 'fr';
+        let currentTheme = localStorage.getItem('preferredTheme') || 'endra';
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            applyTheme(currentTheme);
+            applyLanguage(currentLang);
+        });
+
+        function changeTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('preferredTheme', theme);
+            applyTheme(theme);
+        }
+
+        function applyTheme(theme) {
+            document.body.className = '';
+            document.body.classList.add('theme-' + theme);
+            
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if ((theme === 'endra' && btn.textContent.includes('ENDRA')) || 
+                    (theme === 'normal' && btn.textContent.includes('NORMAL'))) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            applyLanguage(lang);
+        }
+
+        function applyLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if ((lang === 'fr' && btn.textContent.includes('FR')) || 
+                    (lang === 'en' && btn.textContent.includes('EN'))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('[data-fr][data-en]').forEach(element => {
+                if (lang === 'fr') {
+                    element.textContent = element.getAttribute('data-fr');
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+
+            const translations = {
+                card1: {
+                    title: { fr: '🏠 Page d\'Accueil', en: '🏠 Home Page' },
+                    step1Title: { fr: 'Structure CSS Grid', en: 'CSS Grid Structure' },
+                    step1Desc: { fr: 'J\'ai utilisé CSS Grid pour créer une mise en page responsive avec 4 zones principales', en: 'I used CSS Grid to create a responsive layout with 4 main areas' },
+                    step2Title: { fr: 'Animations CSS', en: 'CSS Animations' },
+                    step2Desc: { fr: 'Ajout d\'animations fluides : floatProfile, titlePulse, et effets de survol', en: 'Added smooth animations: floatProfile, titlePulse, and hover effects' },
+                    step3Title: { fr: 'Système de thèmes', en: 'Theme System' },
+                    step3Desc: { fr: 'Implémentation d\'un système de thèmes (ENDRA/NORMAL) avec localStorage pour la persistance', en: 'Implementation of a theme system (ENDRA/NORMAL) with localStorage for persistence' },
+                    step4Title: { fr: 'Système multilingue', en: 'Multilingual System' },
+                    step4Desc: { fr: 'Support FR/EN avec attributs data-fr et data-en + JavaScript pour la traduction dynamique', en: 'FR/EN support with data-fr and data-en attributes + JavaScript for dynamic translation' }
+                },
+                card2: {
+                    title: { fr: '📁 Page Portfolio', en: '📁 Portfolio Page' },
+                    step1Title: { fr: 'Système de filtrage', en: 'Filtering System' },
+                    step1Desc: { fr: 'Filtre dynamique par catégorie avec data-category et manipulation du DOM', en: 'Dynamic filtering by category with data-category and DOM manipulation' },
+                    step2Title: { fr: 'Cartes de projets animées', en: 'Animated Project Cards' },
+                    step2Desc: { fr: 'Cartes avec effets de survol 3D, bordures animées et expansion au hover', en: 'Cards with 3D hover effects, animated borders and hover expansion' },
+                    step3Title: { fr: 'Statistiques dynamiques', en: 'Dynamic Statistics' },
+                    step3Desc: { fr: 'Comptage automatique des projets affichés, terminés et en cours avec mise à jour en temps réel', en: 'Automatic counting of displayed, completed and ongoing projects with real-time updates' },
+                    step4Title: { fr: 'Boutons avec effet néon', en: 'Neon Effect Buttons' },
+                    step4Desc: { fr: 'Boutons stylés avec bordures animées et effets de lumière type néon', en: 'Styled buttons with animated borders and neon light effects' }
+                },
+                card3: {
+                    title: { fr: '👤 Page À Propos', en: '👤 About Page' },
+                    step1Title: { fr: 'Double photo de profil', en: 'Double Profile Photo' },
+                    step1Desc: { fr: 'Effet de changement d\'image au survol avec position: absolute et transition d\'opacité', en: 'Image change effect on hover with position: absolute and opacity transition' },
+                    step2Title: { fr: 'Cartes d\'expérience', en: 'Experience Cards' },
+                    step2Desc: { fr: 'Grid responsive avec images, animations de flottement et overlay au survol', en: 'Responsive grid with images, floating animations and hover overlay' },
+                    step3Title: { fr: 'Tags de compétences', en: 'Skill Tags' },
+                    step3Desc: { fr: 'Badges animés avec effets de flottement échelonnés (animation-delay)', en: 'Animated badges with staggered floating effects (animation-delay)' },
+                    step4Title: { fr: 'Animations séquentielles', en: 'Sequential Animations' },
+                    step4Desc: { fr: 'Chaque élément a un délai d\'animation différent pour créer un effet de cascade', en: 'Each element has a different animation delay to create a cascade effect' }
+                },
+                card4: {
+                    title: { fr: '💼 Page Services', en: '💼 Services Page' },
+                    step1Title: { fr: 'Système de highlight', en: 'Highlight System' },
+                    step1Desc: { fr: 'Clic sur une catégorie pour mettre en évidence le service correspondant avec effet de focus', en: 'Click on a category to highlight the corresponding service with focus effect' },
+                    step2Title: { fr: 'Effets de glassmorphism', en: 'Glassmorphism Effects' },
+                    step2Desc: { fr: 'Utilisation de backdrop-filter: blur() pour créer des surfaces en verre', en: 'Use of backdrop-filter: blur() to create glass surfaces' },
+                    step3Title: { fr: 'Icônes animées', en: 'Animated Icons' },
+                    step3Desc: { fr: 'Animation de rotation subtile avec @keyframes rotateIcon', en: 'Subtle rotation animation with @keyframes rotateIcon' },
+                    step4Title: { fr: 'État actif visuel', en: 'Visual Active State' },
+                    step4Desc: { fr: 'Changement d\'opacité et de taille pour les cartes non sélectionnées', en: 'Opacity and size change for unselected cards' }
+                },
+                card5: {
+                    title: { fr: '👥 Page Équipe', en: '👥 Team Page' },
+                    step1Title: { fr: 'Cartes membres flip', en: 'Member Flip Cards' },
+                    step1Desc: { fr: 'Overlay caché qui apparaît au survol avec les liens sociaux', en: 'Hidden overlay that appears on hover with social links' },
+                    step2Title: { fr: 'Zoom d\'image au survol', en: 'Image Zoom on Hover' },
+                    step2Desc: { fr: 'Effet de zoom sur l\'image du membre avec overflow: hidden', en: 'Zoom effect on member image with overflow: hidden' },
+                    step3Title: { fr: 'Section Culture', en: 'Culture Section' },
+                    step3Desc: { fr: 'Grid de 4 cartes avec icônes animées et bordures au survol', en: 'Grid of 4 cards with animated icons and hover borders' },
+                    step4Title: { fr: 'Statistiques sidebar', en: 'Sidebar Statistics' },
+                    step4Desc: { fr: 'Compteurs animés avec grands chiffres colorés et labels descriptifs', en: 'Animated counters with large colored numbers and descriptive labels' }
+                },
+                card6: {
+                    title: { fr: '📧 Page Contact', en: '📧 Contact Page' },
+                    step1Title: { fr: 'Système d\'authentification', en: 'Authentication System' },
+                    step1Desc: { fr: 'Login/Register avec localStorage pour la persistance des utilisateurs', en: 'Login/Register with localStorage for user persistence' },
+                    step2Title: { fr: 'Système de commentaires', en: 'Comment System' },
+                    step2Desc: { fr: 'CRUD complet : création, affichage, suppression avec vérification du propriétaire', en: 'Complete CRUD: creation, display, deletion with owner verification' },
+                    step3Title: { fr: 'Modales d\'authentification', en: 'Authentication Modals' },
+                    step3Desc: { fr: 'Pop-ups avec animations d\'entrée/sortie et switch entre login/register', en: 'Pop-ups with entry/exit animations and switch between login/register' },
+                    step4Title: { fr: 'Cartes sociales flip 3D', en: '3D Flip Social Cards' },
+                    step4Desc: { fr: 'Effet de rotation 3D avec transform: rotateY(180deg) et bordures animées', en: '3D rotation effect with transform: rotateY(180deg) and animated borders' },
+                    step5Title: { fr: 'Google Maps intégré', en: 'Integrated Google Maps' },
+                    step5Desc: { fr: 'Iframe Google Maps avec localisation de l\'université et style personnalisé', en: 'Google Maps iframe with university location and custom style' }
+                },
+                card7: {
+                    title: { fr: '🔧 Technologies Utilisées', en: '🔧 Technologies Used' },
+                    step1Title: { fr: 'HTML5 Sémantique', en: 'Semantic HTML5' },
+                    step1Desc: { fr: 'Utilisation de balises <header>, <nav>, <main>, <aside>, <footer>', en: 'Use of <header>, <nav>, <main>, <aside>, <footer> tags' },
+                    step2Title: { fr: 'CSS3 Moderne', en: 'Modern CSS3' },
+                    step2Content: { 
+                        fr: '• CSS Grid & Flexbox<br>• Animations & Transitions<br>• Backdrop-filter (glassmorphism)<br>• Custom properties (variables CSS)',
+                        en: '• CSS Grid & Flexbox<br>• Animations & Transitions<br>• Backdrop-filter (glassmorphism)<br>• Custom properties (CSS variables)'
+                    },
+                    step3Title: { fr: 'JavaScript Vanilla', en: 'Vanilla JavaScript' },
+                    step3Content: {
+                        fr: '• Manipulation du DOM<br>• Event listeners<br>• LocalStorage API<br>• Arrow functions ES6+',
+                        en: '• DOM manipulation<br>• Event listeners<br>• LocalStorage API<br>• Arrow functions ES6+'
+                    },
+                    step4Title: { fr: 'Design Responsive', en: 'Responsive Design' },
+                    step4Desc: { fr: 'Media queries pour mobile, tablette et desktop', en: 'Media queries for mobile, tablet and desktop' }
+                },
+                card8: {
+                    title: { fr: '💡 Conseils & Bonnes Pratiques', en: '💡 Tips & Best Practices' },
+                    step1Title: { fr: '1. Organisation du code', en: '1. Code Organization' },
+                    step1Content: {
+                        fr: '• Commenter les sections importantes<br>• Grouper les styles par composant<br>• Nommer les classes de manière descriptive',
+                        en: '• Comment important sections<br>• Group styles by component<br>• Name classes descriptively'
+                    },
+                    step2Title: { fr: '2. Performance', en: '2. Performance' },
+                    step2Content: {
+                        fr: '• Minimiser les animations lourdes<br>• Utiliser transform plutôt que top/left<br>• Optimiser les images avant upload',
+                        en: '• Minimize heavy animations<br>• Use transform rather than top/left<br>• Optimize images before upload'
+                    },
+                    step3Title: { fr: '3. Accessibilité', en: '3. Accessibility' },
+                    step3Content: {
+                        fr: '• Utiliser des balises sémantiques<br>• Ajouter des attributs alt aux images<br>• Contraste de couleurs suffisant',
+                        en: '• Use semantic tags<br>• Add alt attributes to images<br>• Sufficient color contrast'
+                    },
+                    step4Title: { fr: '4. Réutilisation du code', en: '4. Code Reusability' },
+                    step4Content: {
+                        fr: '• Créer des variables CSS pour les couleurs<br>• Fonctions JavaScript réutilisables<br>• Classes CSS modulaires',
+                        en: '• Create CSS variables for colors<br>• Reusable JavaScript functions<br>• Modular CSS classes'
+                    },
+                    step5Title: { fr: '5. Tester sur différents navigateurs', en: '5. Test on Different Browsers' },
+                    step5Desc: { fr: 'Vérifier la compatibilité Chrome, Firefox, Safari, Edge', en: 'Check Chrome, Firefox, Safari, Edge compatibility' }
+                }
+            };
+
+            const cards = document.querySelectorAll('.code-card');
+            
+            if (cards[0]) {
+                cards[0].querySelector('h3').textContent = translations.card1.title[lang];
+                const steps = cards[0].querySelectorAll('.step');
+                if (steps[0]) {
+                    steps[0].querySelector('h4').textContent = translations.card1.step1Title[lang];
+                    steps[0].querySelector('p').innerHTML = translations.card1.step1Desc[lang];
+                }
+                if (steps[1]) {
+                    steps[1].querySelector('h4').textContent = translations.card1.step2Title[lang];
+                    steps[1].querySelector('p').innerHTML = translations.card1.step2Desc[lang];
+                }
+                if (steps[2]) {
+                    steps[2].querySelector('h4').textContent = translations.card1.step3Title[lang];
+                    steps[2].querySelector('p').innerHTML = translations.card1.step3Desc[lang];
+                }
+                if (steps[3]) {
+                    steps[3].querySelector('h4').textContent = translations.card1.step4Title[lang];
+                    steps[3].querySelector('p').innerHTML = translations.card1.step4Desc[lang];
+                }
+            }
+
+            if (cards[1]) {
+                cards[1].querySelector('h3').textContent = translations.card2.title[lang];
+                const steps = cards[1].querySelectorAll('.step');
+                if (steps[0]) {
+                    steps[0].querySelector('h4').textContent = translations.card2.step1Title[lang];
+                    steps[0].querySelector('p').innerHTML = translations.card2.step1Desc[lang];
+                }
+                if (steps[1]) {
+                    steps[1].querySelector('h4').textContent = translations.card2.step2Title[lang];
+                    steps[1].querySelector('p').innerHTML = translations.card2.step2Desc[lang];
+                }
+                if (steps[2]) {
+                    steps[2].querySelector('h4').textContent = translations.card2.step3Title[lang];
+                    steps[2].querySelector('p').innerHTML = translations.card2.step3Desc[lang];
+                }
+                if (steps[3]) {
+                    steps[3].querySelector('h4').textContent = translations.card2.step4Title[lang];
+                    steps[3].querySelector('p').innerHTML = translations.card2.step4Desc[lang];
+                }
+            }
+
+            if (cards[2]) {
+                cards[2].querySelector('h3').textContent = translations.card3.title[lang];
+                const steps = cards[2].querySelectorAll('.step');
+                if (steps[0]) {
+                    steps[0].querySelector('h4').textContent = translations.card3.step1Title[lang];
+                    steps[0].querySelector('p').innerHTML = translations.card3.step1Desc[lang];
+                }
+                if (steps[1]) {
+                    steps[1].querySelector('h4').textContent = translations.card3.step2Title[lang];
+                    steps[1].querySelector('p').innerHTML = translations.card3.step2Desc[lang];
+                }
+                if (steps[2]) {
+                    steps[2].querySelector('h4').textContent = translations.card3.step3Title[lang];
+                    steps[2].querySelector('p').innerHTML = translations.card3.step3Desc[lang];
+                }
+                if (steps[3]) {
+                    steps[3].querySelector('h4').textContent = translations.card3.step4Title[lang];
+                    steps[3].querySelector('p').innerHTML = translations.card3.step4Desc[lang];
+                }
+            }
+
+            if (cards[3]) {
+                cards[3].querySelector('h3').textContent = translations.card4.title[lang];
+                const steps = cards[3].querySelectorAll('.step');
+                if (steps[0]) {
+                    steps[0].querySelector('h4').textContent = translations.card4.step1Title[lang];
+                    steps[0].querySelector('p').innerHTML = translations.card4.step1Desc[lang];
+                }
+                if (steps[1]) {
+                    steps[1].querySelector('h4').textContent = translations.card4.step2Title[lang];
+                    steps[1].querySelector('p').innerHTML = translations.card4.step2Desc[lang];
+                }
+                if (steps[2]) {
+                    steps[2].querySelector('h4').textContent = translations.card4.step3Title[lang];
+                    steps[2].querySelector('p').innerHTML = translations.card4.step3Desc[lang];
+                }
+                if (steps[3]) {
+                    steps[3].querySelector('h4').textContent = translations.card4.step4Title[lang];
+                    steps[3].querySelector('p').innerHTML = translations.card4.step4Desc[lang];
+                }
+            }
+
+            if (cards[4]) {
+                cards[4].querySelector('h3').textContent = translations.card5.title[lang];
+                const steps = cards[4].querySelectorAll('.step');
+                if (steps[0]) {
+                    steps[0].querySelector('h4').textContent = translations.card5.step1Title[lang];
+                    steps[0].querySelector('p').innerHTML = translations.card5.step1Desc[lang];
+                }
+                if (steps[1]) {
+                    steps[1].querySelector('h4').textContent = translations.card5.step2Title[lang];
+                    steps[1].querySelector('p').innerHTML = translations.card5.step2Desc[lang];
+                }
+                if (steps[2]) {
+                    steps[2].querySelector('h4').textContent = translations.card5.step3Title[lang];
+                    steps[2].querySelector('p').innerHTML = translations.card5.step3Desc[lang];
+                }
+                if (steps[3]) {
+                    steps[3].querySelector('h4').textContent = translations.card5.step4Title[lang];
+                    steps[3].querySelector('p').innerHTML = translations.card5.step4Desc[lang];
+                }
+            }
+
+            if (cards[5]) {
+                cards[5].querySelector('h3').textContent = translations.card6.title[lang];
+                const steps = cards[5].querySelectorAll('.step');
+                if (steps[0]) {
+                    steps[0].querySelector('h4').textContent = translations.card6.step1Title[lang];
+                    steps[0].querySelector('p').innerHTML = translations.card6.step1Desc[lang];
+                }
+                if (steps[1]) {
+                    steps[1].querySelector('h4').textContent = translations.card6.step2Title[lang];
+                    steps[1].querySelector('p').innerHTML = translations.card6.step2Desc[lang];
+                }
+                if (steps[2]) {
+                    steps[2].querySelector('h4').textContent = translations.card6.step3Title[lang];
+                    steps[2].querySelector('p').innerHTML = translations.card6.step3Desc[lang];
+                }
+                if (steps[3]) {
+                    steps[3].querySelector('h4').textContent = translations.card6.step4Title[lang];
+                    steps[3].querySelector('p').innerHTML = translations.card6.step4Desc[lang];
+                }
+                if (steps[4]) {
+                    steps[4].querySelector('h4').textContent = translations.card6.step5Title[lang];
+                    steps[4].querySelector('p').innerHTML = translations.card6.step5Desc[lang];
+                }
+            }
+
+            if (cards[6]) {
+                cards[6].querySelector('h3').textContent = translations.card7.title[lang];
+                const steps = cards[6].querySelectorAll('.step');
+                if (steps[0]) {
+                    steps[0].querySelector('h4').textContent = translations.card7.step1Title[lang];
+                    steps[0].querySelector('p').innerHTML = translations.card7.step1Desc[lang];
+                }
+                if (steps[1]) {
+                    steps[1].querySelector('h4').textContent = translations.card7.step2Title[lang];
+                    steps[1].querySelector('p').innerHTML = translations.card7.step2Content[lang];
+                }
+                if (steps[2]) {
+                    steps[2].querySelector('h4').textContent = translations.card7.step3Title[lang];
+                    steps[2].querySelector('p').innerHTML = translations.card7.step3Content[lang];
+                }
+                if (steps[3]) {
+                    steps[3].querySelector('h4').textContent = translations.card7.step4Title[lang];
+                    steps[3].querySelector('p').innerHTML = translations.card7.step4Desc[lang];
+                }
+            }
+
+            if (cards[7]) {
+                cards[7].querySelector('h3').textContent = translations.card8.title[lang];
+                const steps = cards[7].querySelectorAll('.step');
+                if (steps[0]) {
+                    steps[0].querySelector('h4').textContent = translations.card8.step1Title[lang];
+                    steps[0].querySelector('p').innerHTML = translations.card8.step1Content[lang];
+                }
+                if (steps[1]) {
+                    steps[1].querySelector('h4').textContent = translations.card8.step2Title[lang];
+                    steps[1].querySelector('p').innerHTML = translations.card8.step2Content[lang];
+                }
+                if (steps[2]) {
+                    steps[2].querySelector('h4').textContent = translations.card8.step3Title[lang];
+                    steps[2].querySelector('p').innerHTML = translations.card8.step3Content[lang];
+                }
+                if (steps[3]) {
+                    steps[3].querySelector('h4').textContent = translations.card8.step4Title[lang];
+                    steps[3].querySelector('p').innerHTML = translations.card8.step4Content[lang];
+                }
+                if (steps[4]) {
+                    steps[4].querySelector('h4').textContent = translations.card8.step5Title[lang];
+                    steps[4].querySelector('p').innerHTML = translations.card8.step5Desc[lang];
+                }
+            }
+        }
+    </script>
+</body>
+</html>

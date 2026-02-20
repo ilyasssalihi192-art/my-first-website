@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-endra">
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2 id="login-title">🔐 Connexion</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group"><label for="login-email">Email</label><input type="email" id="login-email" required placeholder="votre@email.com"></div>
+                <div class="form-group"><label for="login-password" id="login-password-label">Mot de passe</label><input type="password" id="login-password" required placeholder="••••••••"></div>
+                <button type="submit" class="submit-btn" id="login-submit">Se connecter</button>
+            </form>
+            <div class="modal-switch"><span id="login-switch-text">Pas encore de compte ?</span> <a onclick="switchModal('loginModal', 'registerModal')" id="login-switch-link">Créer un compte</a></div>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
+            <h2 id="register-title">📝 Créer un compte</h2>
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group"><label for="register-name" id="register-name-label">Nom complet</label><input type="text" id="register-name" required placeholder="Jean Dupont"></div>
+                <div class="form-group"><label for="register-email">Email</label><input type="email" id="register-email" required placeholder="votre@email.com"></div>
+                <div class="form-group"><label for="register-password" id="register-password-label">Mot de passe</label><input type="password" id="register-password" required placeholder="••••••••"></div>
+                <div class="form-group"><label for="register-password-confirm" id="register-password-confirm-label">Confirmer le mot de passe</label><input type="password" id="register-password-confirm" required placeholder="••••••••"></div>
+                <button type="submit" class="submit-btn" id="register-submit">Créer mon compte</button>
+            </form>
+            <div class="modal-switch"><span id="register-switch-text">Déjà inscrit ?</span> <a onclick="switchModal('registerModal', 'loginModal')" id="register-switch-link">Se connecter</a></div>
+        </div>
+    </div>
+
+    <div class="grid-content">
+        <header>
+            <div class="auth-container">
+                <button class="auth-btn" id="loginBtn" onclick="openModal('loginModal')" data-fr="🔐 Connexion" data-en="🔐 Login">🔐 Connexion</button>
+                <button class="auth-btn" id="registerBtn" onclick="openModal('registerModal')" data-fr="📝 Inscription" data-en="📝 Sign Up">📝 Inscription</button>
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span id="userName">Utilisateur</span>
+                    <button class="auth-btn" onclick="handleLogout()" data-fr="🚪 Déconnexion" data-en="🚪 Logout">🚪 Déconnexion</button>
+                </div>
+            </div>
+            <div class="controls-container">
+                <div class="theme-switcher">
+                    <button class="theme-btn active" onclick="changeTheme('endra')">🎨 ENDRA</button>
+                    <button class="theme-btn" onclick="changeTheme('normal')">🌙 NORMAL</button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="changeLanguage('fr')">🇫🇷 FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('en')">🇬🇧 EN</button>
+                </div>
+            </div>
+            <div class="profile-container">
+                <img src="photos/Anime2.gif" alt="Photo de profil" class="profile-img">
+            </div>
+            <h1 data-fr="Contactez-nous" data-en="Contact Us">Contactez-nous</h1>
+            <p class="header-subtitle" data-fr="Restons en contact" data-en="Let's stay in touch">Restons en contact</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="accueil.html" data-fr="🏠 Accueil" data-en="🏠 Home">🏠 Accueil</a></li>
+                <li><a href="services.html" data-fr="💼 Services" data-en="💼 Services">💼 Services</a></li>
+                <li><a href="propos.html" data-fr="👤 À propos" data-en="👤 About">👤 À propos</a></li>
+                <li><a href="portfolio.html" data-fr="📁 Portfolio" data-en="📁 Portfolio">📁 Portfolio</a></li>
+                <li><a href="equipe.html" data-fr="👥 Équipe" data-en="👥 Team">👥 Équipe</a></li>
+                <li><a href="contact.html" class="active" data-fr="📧 Contact" data-en="📧 Contact">📧 Contact</a></li>
+            </ul>
+        </nav>
+
+        <aside>
+            <h3 data-fr="📍 Informations de contact" data-en="📍 Contact Information">📍 Informations de contact</h3>
+            <div class="info-box">
+                <div class="info-item">
+                    <div class="info-icon">📧</div>
+                    <div class="info-content"><h4>Email</h4><p>salihiilyad@gmail.com</p></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📱</div>
+                    <div class="info-content"><h4 data-fr="Téléphone" data-en="Phone">Téléphone</h4><p>+212 611 858365</p></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <h4 data-fr="Adresse" data-en="Address">Adresse</h4>
+                        <p>Oujda, Morocco<br><span data-fr="Université Mohammed Premier" data-en="Mohammed Premier University">Université Mohammed Premier</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="hours-box">
+                <h4 data-fr="⏰ Heures de disponibilité" data-en="⏰ Availability Hours">⏰ Heures de disponibilité</h4>
+                <div class="hours-item"><span data-fr="Lundi - Vendredi" data-en="Monday - Friday">Lundi - Vendredi</span><strong>9h - 18h</strong></div>
+                <div class="hours-item"><span data-fr="Samedi" data-en="Saturday">Samedi</span><strong>10h - 14h</strong></div>
+                <div class="hours-item"><span data-fr="Dimanche" data-en="Sunday">Dimanche</span><strong data-fr="Fermé" data-en="Closed">Fermé</strong></div>
+            </div>
+            <div class="guide-box">
+                <a href="guide-acces.html" class="guide-button">
+                    <div class="guide-icon">📚</div>
+                    <div class="guide-content">
+                        <h4 data-fr="Guide de création" data-en="Creation Guide">Guide de création</h4>
+                        <p data-fr="Découvrez comment j'ai créé ce site" data-en="Discover how I created this site">Découvrez comment j'ai créé ce site</p>
+                    </div>
+                    <div class="guide-arrow">→</div>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <section class="contact-section">
+                <h2 id="main-title">📬 Envoyez-nous un message</h2>
+                <p class="section-intro" id="intro-text">Vous avez un projet en tête ? Une question ? N'hésitez pas à nous contacter. Nous serons ravis d'échanger avec vous et de répondre à toutes vos questions dans les plus brefs délais.</p>
+
+                <div class="contact-container">
+                    <div class="contact-form">
+                        <h3 id="form-title">✉️ Formulaire de contact</h3>
+                        <div id="success-message" class="success-message">
+                            <span data-fr="✓ Message envoyé avec succès ! Nous vous répondrons bientôt." data-en="✓ Message sent successfully! We will respond soon.">✓ Message envoyé avec succès ! Nous vous répondrons bientôt.</span>
+                        </div>
+                        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="aaaad1b6-ffd7-4c4a-b247-7386c3db12dc">
+                            <input type="hidden" name="subject" value="📬 Nouveau message depuis le Portfolio">
+                            <input type="hidden" name="from_name" value="Portfolio Contact Form">
+                            <div class="form-group"><label for="name" data-fr="Nom complet *" data-en="Full Name *">Nom complet *</label><input type="text" id="name" name="name" required placeholder="Jean Dupont"></div>
+                            <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required placeholder="jean.dupont@exemple.com"></div>
+                            <div class="form-group"><label for="phone" data-fr="Téléphone" data-en="Phone">Téléphone</label><input type="tel" id="phone" name="phone" placeholder="+212 6XX XXX XXX"></div>
+                            <div class="form-group">
+                                <label for="subject" data-fr="Type de demande *" data-en="Request Type *">Type de demande *</label>
+                                <select id="subject" name="Type_de_demande" required>
+                                    <option value="" data-fr="Sélectionnez un sujet" data-en="Select a subject">Sélectionnez un sujet</option>
+                                    <option value="🚀 Nouveau projet" data-fr="🚀 Nouveau projet" data-en="🚀 New project">🚀 Nouveau projet</option>
+                                    <option value="ℹ️ Demande d'information" data-fr="ℹ️ Demande d'information" data-en="ℹ️ Information request">ℹ️ Demande d'information</option>
+                                    <option value="💰 Demande de devis" data-fr="💰 Demande de devis" data-en="💰 Quote request">💰 Demande de devis</option>
+                                    <option value="🛠️ Support technique" data-fr="🛠️ Support technique" data-en="🛠️ Technical support">🛠️ Support technique</option>
+                                    <option value="📝 Autre" data-fr="📝 Autre" data-en="📝 Other">📝 Autre</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required placeholder="Votre message..."></textarea></div>
+                            <button type="submit" class="submit-btn" data-fr="📤 Envoyer le message" data-en="📤 Send Message">📤 Envoyer le message</button>
+                        </form>
+                    </div>
+
+                    <div class="map-container">
+                        <h3 id="location-title">📍 Notre localisation</h3>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3309.3999326568636!2d-1.9015088227065158!3d34.65018658115168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd787ca31c44b0b3%3A0x49a225623fcafd20!2sUniversity%20Mohammed%20Premier!5e0!3m2!1sen!2sma!4v1709846532187!5m2!1sen!2sma"
+                            width="100%" height="450" style="border:0;border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <p style="text-align:center;margin-top:15px;color:rgba(255,255,255,0.7);">
+                            <span data-fr="Oujda, Maroc - Université Mohammed Premier" data-en="Oujda, Morocco - Mohammed Premier University">Oujda, Maroc - Université Mohammed Premier</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="comments-section">
+                    <h3 id="comments-title">💬 Commentaires</h3>
+                    <div class="comment-form" id="commentFormContainer">
+                        <div class="login-required" id="loginRequired">
+                            <p data-fr="🔒 Veuillez vous connecter pour laisser un commentaire" data-en="🔒 Please login to leave a comment">🔒 Veuillez vous connecter pour laisser un commentaire</p>
+                        </div>
+                        <form id="commentForm" onsubmit="handleComment(event)" style="display:none;">
+                            <div class="form-group"><label for="comment-text" data-fr="Votre commentaire" data-en="Your comment">Votre commentaire</label><textarea id="comment-text" required placeholder="Partagez votre avis..." rows="4"></textarea></div>
+                            <button type="submit" class="submit-btn" data-fr="💬 Publier le commentaire" data-en="💬 Post Comment">💬 Publier le commentaire</button>
+                        </form>
+                    </div>
+                    <div class="comments-list" id="commentsList"></div>
+                </div>
+
+                <div class="social-contact">
+                    <h3 id="social-title">🌐 Suivez-nous sur les réseaux sociaux</h3>
+                    <div class="social-buttons">
+                        <div class="social-card github">
+                            <div class="social-card-content">
+                                <div class="social-card-back"><div class="social-card-back-content"><div class="social-icon">💻</div><strong data-fr="Survolez-moi" data-en="Hover Me">Survolez-moi</strong></div></div>
+                                <div class="social-card-front">
+                                    <div class="social-img"><div class="social-circle"></div><div class="social-circle"></div><div class="social-circle"></div></div>
+                                    <div class="social-card-front-content">
+                                        <small class="social-badge" data-fr="Développement" data-en="Development">Développement</small>
+                                        <div class="social-description"><div class="social-title"><p><strong>GitHub</strong></p><a href="https://github.com/ilyasssalihi192-art" target="_blank" style="color:#ffd700;font-size:1.5em;text-decoration:none;">🔗</a></div><p class="social-card-footer" data-fr="Mes projets & code" data-en="My projects & code">Mes projets & code</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-card linkedin">
+                            <div class="social-card-content">
+                                <div class="social-card-back"><div class="social-card-back-content"><div class="social-icon">💼</div><strong data-fr="Survolez-moi" data-en="Hover Me">Survolez-moi</strong></div></div>
+                                <div class="social-card-front">
+                                    <div class="social-img"><div class="social-circle"></div><div class="social-circle"></div><div class="social-circle"></div></div>
+                                    <div class="social-card-front-content">
+                                        <small class="social-badge" data-fr="Professionnel" data-en="Professional">Professionnel</small>
+                                        <div class="social-description"><div class="social-title"><p><strong>LinkedIn</strong></p><a href="https://www.linkedin.com/in/ilyass-salihi-307193352" target="_blank" style="color:#ffd700;font-size:1.5em;text-decoration:none;">🔗</a></div><p class="social-card-footer" data-fr="Réseau pro" data-en="Pro network">Réseau pro</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-card instagram">
+                            <div class="social-card-content">
+                                <div class="social-card-back"><div class="social-card-back-content"><div class="social-icon">📷</div><strong data-fr="Survolez-moi" data-en="Hover Me">Survolez-moi</strong></div></div>
+                                <div class="social-card-front">
+                                    <div class="social-img"><div class="social-circle"></div><div class="social-circle"></div><div class="social-circle"></div></div>
+                                    <div class="social-card-front-content">
+                                        <small class="social-badge" data-fr="Créatif" data-en="Creative">Créatif</small>
+                                        <div class="social-description"><div class="social-title"><p><strong>Instagram</strong></p><a href="https://www.instagram.com/sali__ilyass__rf?igsh=MmJzd3hrOTF0bXc=" target="_blank" style="color:#ffd700;font-size:1.5em;text-decoration:none;">🔗</a></div><p class="social-card-footer" data-fr="Ma vie créative" data-en="My creative life">Ma vie créative</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-card facebook">
+                            <div class="social-card-content">
+                                <div class="social-card-back"><div class="social-card-back-content"><div class="social-icon">🐦</div><strong data-fr="Survolez-moi" data-en="Hover Me">Survolez-moi</strong></div></div>
+                                <div class="social-card-front">
+                                    <div class="social-img"><div class="social-circle"></div><div class="social-circle"></div><div class="social-circle"></div></div>
+                                    <div class="social-card-front-content">
+                                        <small class="social-badge" data-fr="Social" data-en="Social">Social</small>
+                                        <div class="social-description"><div class="social-title"><p><strong>Facebook</strong></p><a href="https://www.facebook.com/share/1d7EBG7j52/" target="_blank" style="color:#ffd700;font-size:1.5em;text-decoration:none;">🔗</a></div><p class="social-card-footer" data-fr="Restons connectés" data-en="Stay connected">Restons connectés</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Mon Portfolio - <span data-fr="Tous droits réservés" data-en="All rights reserved">Tous droits réservés</span></p>
+            <p style="margin-top: 10px; opacity: 0.8;" data-fr="Développé avec passion 💙" data-en="Developed with passion 💙">Développé avec passion 💙</p>
+            <div class="social-links">
+                <a href="https://github.com/ilyasssalihi192-art" title="GitHub">💻</a>
+                <a href="https://www.linkedin.com/in/ilyass-salihi-307193352" title="LinkedIn">💼</a>
+                <a href="https://www.instagram.com/sali__ilyass__rf?igsh=MmJzd3hrOTF0bXc=" title="Instagram">📷</a>
+                <a href="https://www.facebook.com/share/1d7EBG7j52/" title="Facebook">🐦</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script-common.js"></script>
+    <script src="script-contact.js"></script>
+</body>
+</html>

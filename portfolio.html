@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-endra">
+    <div class="grid-container">
+        <header>
+            <div class="controls-container">
+                <div class="theme-switcher">
+                    <button class="theme-btn active" onclick="changeTheme('endra')">🎨 ENDRA</button>
+                    <button class="theme-btn" onclick="changeTheme('normal')">🌙 NORMAL</button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="changeLanguage('fr')">🇫🇷 FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('en')">🇬🇧 EN</button>
+                </div>
+            </div>
+            <div class="profile-container">
+                <img src="photos/Anime2.gif" alt="Photo de profil" class="profile-img">
+            </div>
+            <h1 data-fr="Mon Portfolio" data-en="My Portfolio">Mon Portfolio</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="accueil.html" data-fr="🏠 Accueil" data-en="🏠 Home">🏠 Accueil</a></li>
+                <li><a href="services.html" data-fr="💼 Services" data-en="💼 Services">💼 Services</a></li>
+                <li><a href="propos.html" data-fr="👤 À propos" data-en="👤 About">👤 À propos</a></li>
+                <li><a href="portfolio.html" class="active" data-fr="📁 Portfolio" data-en="📁 Portfolio">📁 Portfolio</a></li>
+                <li><a href="equipe.html" data-fr="👥 Équipe" data-en="👥 Team">👥 Équipe</a></li>
+                <li><a href="contact.html" data-fr="📧 Contact" data-en="📧 Contact">📧 Contact</a></li>
+            </ul>
+        </nav>
+
+        <aside>
+            <h3 data-fr="🔍 Filtres" data-en="🔍 Filters">🔍 Filtres</h3>
+            <div class="filter-section">
+                <button class="filter-btn active" onclick="filterProjects('all')" data-fr="Tous les projets" data-en="All projects">Tous les projets</button>
+                <button class="filter-btn" onclick="filterProjects('web')" data-fr="Web Development" data-en="Web Development">Web Development</button>
+                <button class="filter-btn" onclick="filterProjects('mobile')" data-fr="Mobile Apps" data-en="Mobile Apps">Mobile Apps</button>
+                <button class="filter-btn" onclick="filterProjects('backend')">Backend</button>
+                <button class="filter-btn" onclick="filterProjects('design')">Design</button>
+            </div>
+            <div class="stats-sidebar">
+                <h3 style="font-size: 1.2em; margin-bottom: 15px;" data-fr="📊 Statistiques" data-en="📊 Statistics">📊 Statistiques</h3>
+                <p><strong data-fr="Total:" data-en="Total:">Total:</strong> <span id="total-count">6 projets</span></p>
+                <p><strong data-fr="Affichés:" data-en="Displayed:">Affichés:</strong> <span id="displayed-count">6 projets</span></p>
+                <p><strong data-fr="Terminés:" data-en="Completed:">Terminés:</strong> <span id="completed-count">4 projets</span></p>
+                <p><strong data-fr="En cours:" data-en="In progress:">En cours:</strong> <span id="progress-count">2 projets</span></p>
+                <p><strong data-fr="Technologies:" data-en="Technologies:">Technologies:</strong> 15+</p>
+            </div>
+        </aside>
+
+        <main>
+            <section class="projects-section" id="projets">
+                <h2 id="main-title">🚀 Mes Projets</h2>
+                <p class="section-intro" id="intro-text">Découvrez une sélection de mes réalisations les plus récentes. Chaque projet représente un défi unique et une opportunité d'apprentissage.</p>
+
+                <div class="projects-grid">
+                    <div class="project-card" data-category="web">
+                        <span class="project-icon">🛒</span>
+                        <h3 id="project1-title">Site E-commerce</h3>
+                        <p id="project1-desc">Une plateforme de vente en ligne complète avec panier d'achat, système de paiement sécurisé et gestion avancée des stocks en temps réel.</p>
+                        <p class="tech-stack"><span data-fr="💻 Technologies:" data-en="💻 Technologies:">💻 Technologies:</span> HTML5, CSS3, JavaScript, PHP, MySQL</p>
+                        <span class="project-status status-completed" data-fr="✓ Terminé" data-en="✓ Completed">✓ Terminé</span>
+                        <div class="project-links">
+                            <a href="erreur.html" class="project-btn" data-fr="Voir Démo" data-en="View Demo">Voir Démo</a>
+                            <a href="erreur.html" class="project-btn" data-fr="Code Source" data-en="Source Code">Code Source</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="mobile">
+                        <span class="project-icon">📱</span>
+                        <h3 id="project2-title">Application Mobile</h3>
+                        <p id="project2-desc">Application de gestion de tâches avec synchronisation cloud instantanée, notifications push et interface intuitive.</p>
+                        <p class="tech-stack"><span data-fr="💻 Technologies:" data-en="💻 Technologies:">💻 Technologies:</span> React Native, Firebase, Redux</p>
+                        <span class="project-status status-progress" data-fr="⏳ En cours" data-en="⏳ In Progress">⏳ En cours</span>
+                        <div class="project-links">
+                            <a href="erreur.html" class="project-btn" data-fr="Voir Démo" data-en="View Demo">Voir Démo</a>
+                            <a href="erreur.html" class="project-btn" data-fr="Code Source" data-en="Source Code">Code Source</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="web design">
+                        <span class="project-icon">📊</span>
+                        <h3 id="project3-title">Dashboard Analytics</h3>
+                        <p id="project3-desc">Interface de visualisation de données avec graphiques interactifs en temps réel et rapports personnalisables exportables.</p>
+                        <p class="tech-stack"><span data-fr="💻 Technologies:" data-en="💻 Technologies:">💻 Technologies:</span> Vue.js, D3.js, Node.js, Chart.js</p>
+                        <span class="project-status status-completed" data-fr="✓ Terminé" data-en="✓ Completed">✓ Terminé</span>
+                        <div class="project-links">
+                            <a href="erreur.html" class="project-btn" data-fr="Voir Démo" data-en="View Demo">Voir Démo</a>
+                            <a href="erreur.html" class="project-btn" data-fr="Code Source" data-en="Source Code">Code Source</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="web backend">
+                        <span class="project-icon">✍️</span>
+                        <h3 id="project4-title">Blog Personnel</h3>
+                        <p id="project4-desc">Plateforme de blog moderne avec système de commentaires, recherche avancée, catégorisation et éditeur WYSIWYG.</p>
+                        <p class="tech-stack"><span data-fr="💻 Technologies:" data-en="💻 Technologies:">💻 Technologies:</span> WordPress, PHP, MySQL, JavaScript</p>
+                        <span class="project-status status-completed" data-fr="✓ Terminé" data-en="✓ Completed">✓ Terminé</span>
+                        <div class="project-links">
+                            <a href="erreur.html" class="project-btn" data-fr="Voir Démo" data-en="View Demo">Voir Démo</a>
+                            <a href="erreur.html" class="project-btn" data-fr="Code Source" data-en="Source Code">Code Source</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="web design">
+                        <span class="project-icon">🎮</span>
+                        <h3 id="project5-title">Jeu Web Interactif</h3>
+                        <p id="project5-desc">Jeu de stratégie en temps réel avec animations fluides 60fps, système de score et multijoueur en ligne.</p>
+                        <p class="tech-stack"><span data-fr="💻 Technologies:" data-en="💻 Technologies:">💻 Technologies:</span> JavaScript, Canvas API, WebGL, Socket.io</p>
+                        <span class="project-status status-progress" data-fr="⏳ En cours" data-en="⏳ In Progress">⏳ En cours</span>
+                        <div class="project-links">
+                            <a href="erreur.html" class="project-btn" data-fr="Voir Démo" data-en="View Demo">Voir Démo</a>
+                            <a href="erreur.html" class="project-btn" data-fr="Code Source" data-en="Source Code">Code Source</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="backend">
+                        <span class="project-icon">🔌</span>
+                        <h3 id="project6-title">API RESTful</h3>
+                        <p id="project6-desc">Service web robuste pour la gestion de ressources avec authentification JWT, documentation Swagger et tests automatisés.</p>
+                        <p class="tech-stack"><span data-fr="💻 Technologies:" data-en="💻 Technologies:">💻 Technologies:</span> Node.js, Express, MongoDB, JWT</p>
+                        <span class="project-status status-completed" data-fr="✓ Terminé" data-en="✓ Completed">✓ Terminé</span>
+                        <div class="project-links">
+                            <a href="erreur.html" class="project-btn" data-fr="Documentation" data-en="Documentation">Documentation</a>
+                            <a href="erreur.html" class="project-btn" data-fr="Code Source" data-en="Source Code">Code Source</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Mon Portfolio - <span data-fr="Tous droits réservés" data-en="All rights reserved">Tous droits réservés</span></p>
+            <p style="margin-top: 10px; opacity: 0.8;" data-fr="Développé avec passion 💙" data-en="Developed with passion 💙">Développé avec passion 💙</p>
+            <div class="social-links">
+                <a href="https://github.com/ilyasssalihi192-art" title="GitHub">💻</a>
+                <a href="https://www.linkedin.com/in/ilyass-salihi-307193352" title="LinkedIn">💼</a>
+                <a href="https://www.instagram.com/sali__ilyass__rf?igsh=MmJzd3hrOTF0bXc=" title="Instagram">📷</a>
+                <a href="https://www.facebook.com/share/1d7EBG7j52/" title="Facebook">🐦</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script-common.js"></script>
+    <script src="script-portfolio.js"></script>
+</body>
+</html>
